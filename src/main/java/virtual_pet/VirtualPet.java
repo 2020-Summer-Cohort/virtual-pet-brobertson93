@@ -44,7 +44,7 @@ public class VirtualPet {
 
     public boolean random() {
         int random = (int) (1 + (Math.random() * 5));
-        System.out.println("Random = " + random);
+
         if (random == 2) {
             System.out.println("Your pet decided to eat!");
             hunger = hunger + 20;

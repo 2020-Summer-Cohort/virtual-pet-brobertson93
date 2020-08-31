@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class VirtualPetApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         //Interact with a VirtualPet object in this method
         Scanner input = new Scanner(System.in);
         VirtualPet pet = new VirtualPet();
@@ -22,7 +22,14 @@ public class VirtualPetApplication {
             System.out.println("Thirst: " + pet.thirst);
             System.out.println("Boredom: " + pet.boredom);
             System.out.println("Tiredness: " + pet.tiredness);
-
+            System.out.println();
+            System.out.println("Press the corresponding number to do an action!");
+            System.out.println("1: Feed Andy");
+            System.out.println("2: Give Andy water");
+            System.out.println("3: Play with Andy");
+            System.out.println("4: Put Andy in bed");
+            System.out.println("5: Do nothing.");
+            System.out.println("9: Quit the program");
             answer = input.nextInt();
 
             if (answer == 1) {
@@ -38,11 +45,13 @@ public class VirtualPetApplication {
             } else if (answer == 4) {
                 pet.sleep();
                 System.out.println("You let Andy sleep!");
-            } else if (answer == 5) {
+            }
+            else if (answer == 9) {
                 System.out.println("Thank you for playing!");
                 end = true;
             }
 
+            Thread.sleep(2000);
             pet.tick();
 
 
