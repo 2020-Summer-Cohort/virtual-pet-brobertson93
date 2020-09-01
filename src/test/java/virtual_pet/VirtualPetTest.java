@@ -1,4 +1,4 @@
-package virtual_pet;
+/*package virtual_pet;
 
 
 import org.junit.jupiter.api.Test;
@@ -23,3 +23,4 @@ public class VirtualPetTest {
         assertEquals(vp.hunger, 35);
     }
 }
+*/

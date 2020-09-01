@@ -6,15 +6,63 @@ public class VirtualPetApplication {
 
     public static void main(String[] args) throws InterruptedException {
         //Interact with a VirtualPet object in this method
-        Scanner input = new Scanner(System.in);
+       // Scanner input = new Scanner(System.in);
         VirtualPet pet = new VirtualPet();
         boolean end = false;
+        int time = 0;
+        String input = null;
 
         int answer;
 
         while (!end) {
+            input = inputReader.next();
 
-            if (pet.random()) {
+            System.out.println(time);
+            Thread.sleep(2000);
+
+            time++;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           /* if (pet.random()) {
                 continue;
             }
             System.out.println("Andy the Ant-Eater");
@@ -51,7 +99,7 @@ public class VirtualPetApplication {
             }
 
             Thread.sleep(2000);
-            pet.tick();
+            pet.tick();*/
 
 
         }
@@ -65,4 +113,4 @@ public class VirtualPetApplication {
     }
 
 
-}
+

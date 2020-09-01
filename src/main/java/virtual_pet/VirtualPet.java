@@ -42,7 +42,7 @@ public class VirtualPet {
 
 
 
-    public boolean random() {
+    public  random() {
         int random = (int) (1 + (Math.random() * 5));
 
         if (random == 2) {
