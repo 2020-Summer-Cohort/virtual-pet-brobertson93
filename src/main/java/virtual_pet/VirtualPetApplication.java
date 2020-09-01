@@ -14,9 +14,9 @@ public class VirtualPetApplication {
 
         while (!end) {
 
-           if (pet.random()){
-               continue;
-           }
+            if (pet.random()) {
+                continue;
+            }
             System.out.println("Andy the Ant-Eater");
             System.out.println("Hunger: " + pet.hunger);
             System.out.println("Thirst: " + pet.thirst);
@@ -45,8 +45,7 @@ public class VirtualPetApplication {
             } else if (answer == 4) {
                 pet.sleep();
                 System.out.println("You let Andy sleep!");
-            }
-            else if (answer == 9) {
+            } else if (answer == 9) {
                 System.out.println("Thank you for playing!");
                 end = true;
             }
