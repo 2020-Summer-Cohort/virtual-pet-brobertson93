@@ -22,4 +22,13 @@ public class VirtualPetTest {
         assertEquals(vp.thirst, 115);
         assertEquals(vp.hunger, 35);
     }
+
+    @Test
+    public void testBoredom () {
+        VirtualPet vp = new VirtualPet();
+        vp.play();
+        assertEquals(vp.getBoredom(),45);
+        assertEquals(vp.getThirst(),40);
+        assertEquals(vp.getHunger(),35);
+    }
 }

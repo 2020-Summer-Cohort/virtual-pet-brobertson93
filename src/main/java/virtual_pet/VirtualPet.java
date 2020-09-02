@@ -3,14 +3,32 @@ package virtual_pet;
 public class VirtualPet {
 
    int  hunger = 40;
-   int thirst = 100;
-   int boredom = 40;
-   int tiredness = 120;
+   int thirst = 50;
+   int boredom = 15;
+   int tiredness = 30;
 
    public void tick() {
 
     hunger = hunger - 4;
     thirst =  thirst - 2;
+    boredom = boredom -5;
+    tiredness = tiredness -3;
+
+    if (hunger <= 10) {
+        System.out.println("Please feed me I am hungry!\n");
+    }
+
+    else if (thirst <= 10) {
+        System.out.println("I am thirsty!\n");
+    }
+
+    else if (boredom <= 10) {
+        System.out.println("I am getting bored\n");
+    }
+
+    else if (tiredness <= 10) {
+        System.out.println("I am getting pretty tired!\n");
+    }
 
 
    }
@@ -40,7 +58,21 @@ public class VirtualPet {
        tiredness = tiredness + 30;
     }
 
+    public int getHunger() {
+        return hunger;
+    }
 
+    public int getBoredom() {
+        return boredom;
+    }
+
+    public int getThirst() {
+        return thirst;
+    }
+
+    public int getTiredness() {
+        return tiredness;
+    }
 
     public boolean random() {
         int random = (int) (1 + (Math.random() * 5));

@@ -18,10 +18,10 @@ public class VirtualPetApplication {
                 continue;
             }
             System.out.println("Andy the Ant-Eater");
-            System.out.println("Hunger: " + pet.hunger);
-            System.out.println("Thirst: " + pet.thirst);
-            System.out.println("Boredom: " + pet.boredom);
-            System.out.println("Tiredness: " + pet.tiredness);
+            System.out.println("Hunger: " + pet.getHunger());
+            System.out.println("Thirst: " + pet.getThirst());
+            System.out.println("Boredom: " + pet.getBoredom());
+            System.out.println("Tiredness: " + pet.getTiredness());
             System.out.println();
             System.out.println("Press the corresponding number to do an action!");
             System.out.println("1: Feed Andy");
