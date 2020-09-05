@@ -39,43 +39,26 @@ class Main extends Thread {
 
             int selection = input.nextInt() - 1;
             System.out.println("");
+            VirtualPet methods = new VirtualPet();
             while (true) {
 
-                System.out.println("Hunger: " + d.array.get(selection).hunger); //prints out all the options for interacting with the pet
-                System.out.println("Thirst: " + d.array.get(selection).thirst);
-                System.out.println("Boredom: " + d.array.get(selection).boredom);
-                System.out.println("Tiredness: " + d.array.get(selection).tiredness);
-                System.out.println("");
-                System.out.println("1: Feed " + d.array.get(selection).name);
-                System.out.println("2: Give " + d.array.get(selection).name + " water");
-                System.out.println("3: Play with " + d.array.get(selection).name);
-                System.out.println("4: Put " + d.array.get(selection).name + " in bed");
-                System.out.println("5: Do nothing.");
-                System.out.println("");
-                System.out.println("6: Change Pet.");
-                System.out.println("");
-                System.out.println("");
-                System.out.println("9: Quit the program");
+              methods.printAttributes(selection);
 
                 int answer = input.nextInt();
 
 
                 if (answer == 1) {  //compares user input to selectable options
                     d.array.get(selection).feed(selection); //runs feed method to feed the pet
-                    System.out.println("You feed " + d.array.get(selection).name + "!");
-                    System.out.println("");
+
                 } else if (answer == 2) {
                     d.array.get(selection).drink(selection); //runs drink method to make hydration better
-                    System.out.println("You give " + d.array.get(selection).name + " water!");
-                    System.out.println("");
+
                 } else if (answer == 3) {
                     d.array.get(selection).play(selection); //runs play method to increase boredom level
-                    System.out.println("You play with " + d.array.get(selection).name + "!");
-                    System.out.println("");
+
                 } else if (answer == 4) {
                     d.array.get(selection).sleep(selection); //runs sleep method to increase sleep level
-                    System.out.println("You let " + d.array.get(selection).name + "sleep!");
-                    System.out.println("");
+
                 } else if (answer == 6) {
                     break; //breaks out of while loop and goes back to the pet selection screen
                 }

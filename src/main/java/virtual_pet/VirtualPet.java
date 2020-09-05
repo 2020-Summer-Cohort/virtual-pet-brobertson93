@@ -8,10 +8,42 @@ public class VirtualPet {
     int tiredness = 100;
 
 
+    public void printAttributes(int number){
+        VirtualPetApplication d = VirtualPetApplication.getInstance();
+        System.out.println("Hunger: " + d.array.get(number).hunger);//prints out all the options for interacting with the pet
+        System.out.println("Thirst: " + d.array.get(number).thirst);
+        System.out.println("Boredom: " + d.array.get(number).boredom);
+        System.out.println("Tiredness: " + d.array.get(number).tiredness);
+
+        System.out.println("");
+        System.out.println("1: Feed " + d.array.get(number).name);
+        System.out.println("2: Give " + d.array.get(number).name + " water");
+        System.out.println("3: Play with " + d.array.get(number).name);
+        System.out.println("4: Put " + d.array.get(number).name + " in bed");
+        System.out.println("5: Do nothing.");
+        System.out.println("");
+        System.out.println("6: Change Pet.");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("9: Quit the program");
+    }
+
+    public int getHunger(int number){
+        VirtualPetApplication p = VirtualPetApplication.getInstance();
+        return p.array.get(number).hunger;
+    }
+
+    public int getThirst(int number){
+        VirtualPetApplication p = VirtualPetApplication.getInstance();
+        return p.array.get(number).thirst;
+    }
+
     public void feed (int number){
         VirtualPetApplication p = VirtualPetApplication.getInstance(); //brings in singleton array
         p.array.get(number).hunger = p.array.get(number).hunger + 20;//updates hunger
         p.array.get(number).thirst = p.array.get(number).thirst - 5; //updates thirst
+        System.out.println("You feed " + p.array.get(number).name + "!");
+        System.out.println("");
 
     }
 
@@ -19,6 +51,8 @@ public class VirtualPet {
         VirtualPetApplication p = VirtualPetApplication.getInstance();
         p.array.get(number).thirst = p.array.get(number).thirst + 20;
         p.array.get(number).hunger = p.array.get(number).hunger - 5;
+        System.out.println("You give " + p.array.get(number).name + " water!");
+        System.out.println("");
 
     }
 
@@ -28,6 +62,9 @@ public class VirtualPet {
         p.array.get(number).hunger = p.array.get(number).hunger - 5;
         p.array.get(number).thirst = p.array.get(number).thirst - 8;
         p.array.get(number).tiredness = p.array.get(number).tiredness - 15;
+
+        System.out.println("You play with " + p.array.get(number).name + "!");
+        System.out.println("");
 
 
     }
@@ -39,6 +76,9 @@ public class VirtualPet {
         p.array.get(number).hunger = p.array.get(number).hunger - 25;
         p.array.get(number).thirst = p.array.get(number).thirst - 18;
         p.array.get(number).tiredness = p.array.get(number).tiredness + 45;
+
+        System.out.println("You let " + p.array.get(number).name + " sleep!");
+        System.out.println("");
 
     }
 
