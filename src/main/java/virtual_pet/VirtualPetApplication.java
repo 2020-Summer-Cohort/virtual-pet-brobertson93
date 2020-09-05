@@ -5,26 +5,25 @@ import java.util.ArrayList;
 
 
 
-import java.util.Scanner;
 
-// Java program implementing Singleton class
-// with getInstance() method
+
+
 class VirtualPetApplication
 {
-    // static variable single_instance of type Singleton
+
     private static VirtualPetApplication single_instance = null;
 
-    // variable of type String
+
     public ArrayList<VirtualPet> array = new ArrayList<VirtualPet>();
 
-    // private constructor restricted to this class itself
+
     private VirtualPetApplication()
     {
         array = new ArrayList<VirtualPet>(); //creates array list of pets that can be accssed globally
 
     }
 
-    // static method to create instance of Singleton class
+
     public static VirtualPetApplication getInstance()
     {
         if (single_instance == null)
@@ -34,7 +33,7 @@ class VirtualPetApplication
     }
 }
 
-// Driver Class
+
 class Main extends Thread {
     public static void main(String args[]) {
         Main thread = new Main();
