@@ -7,9 +7,7 @@ public class VirtualPet {
     int boredom = 100;
     int tiredness = 100;
 
-    public static void exit() {
-        Runtime.getRuntime().exit(0);
-    }
+
     public void feed (int number){
         VirtualPetApplication p = VirtualPetApplication.getInstance(); //brings in singleton array
         p.array.get(number).hunger = p.array.get(number).hunger + 20;//updates hunger
@@ -50,8 +48,8 @@ public class VirtualPet {
         p.array.get(selection).hunger = p.array.get(selection).hunger - 2;
         if(p.array.get(selection).hunger < 0) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " died from hunger!***"); //lets you know which pet died from a particular attribute hitting < 0
-            System.out.println("");
+            System.out.println("***" + p.array.get(selection).name + " died from hunger!***"+'\n' + "GAME OVER!"); //lets you know which pet died from a particular attribute hitting < 0
+            Runtime.getRuntime().exit(0); //exits program
         }
 
         else if(p.array.get(selection).hunger < 40) {
@@ -64,8 +62,10 @@ public class VirtualPet {
 
         if(p.array.get(selection).thirst < 0) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " died from thirst!***");
-            System.out.println("");
+            System.out.println("***" + p.array.get(selection).name + " died from thirst!***" +'\n' + "GAME OVER!");
+            Runtime.getRuntime().exit(0); //exits program
+
+
         }
 
         else if(p.array.get(selection).thirst < 40) {
@@ -78,8 +78,8 @@ public class VirtualPet {
 
         if(p.array.get(selection).boredom < 0) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " died from boredom!***");
-            System.out.println("");
+            System.out.println("***" + p.array.get(selection).name + " died from boredom!***"+'\n' + "GAME OVER!");
+            Runtime.getRuntime().exit(0); //exits program
         }
 
         else if(p.array.get(selection).boredom < 40) {
@@ -92,8 +92,8 @@ public class VirtualPet {
 
         if(p.array.get(selection).tiredness < 0) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " died from exhaustion!***");
-            System.out.println("");
+            System.out.println("***" + p.array.get(selection).name + " died from exhaustion!***"+'\n' + "GAME OVER!");
+            Runtime.getRuntime().exit(0); //exits program
         }
 
         else if(p.array.get(selection).tiredness < 40) {
