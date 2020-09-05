@@ -20,7 +20,7 @@ class VirtualPetApplication
     // private constructor restricted to this class itself
     private VirtualPetApplication()
     {
-        array = new ArrayList<VirtualPet>();
+        array = new ArrayList<VirtualPet>(); //creates array list of pets that can be accssed globally
 
     }
 
@@ -49,24 +49,24 @@ class Main extends Thread {
 
         for (int i = 0; i < pets; i++) {
 
-            VirtualPet test = new VirtualPet();
+            VirtualPet newPet = new VirtualPet();
             System.out.println("Please enter pet name!");
-            test.name = input.nextLine();
-            d.array.add(test);
+            newPet.name = input.nextLine();
+            d.array.add(newPet); //creates a new object of the class Pet and pushes it into the singleton
 
 
         }
 
 
 
-        thread.start();
+        thread.start(); //starts the thread that increments the pets attributes
         boolean end = false;
         while(!end){
 
             System.out.println("Please select a pet!");
             for (int i = 0; i < d.array.size(); i++) {
 
-                System.out.println((i + 1 ) + ": " + d.array.get(i).name);
+                System.out.println((i + 1 ) + ": " + d.array.get(i).name); //prints out pet names
 
 
             }
@@ -75,7 +75,7 @@ class Main extends Thread {
             System.out.println("");
             while(!end) {
 
-                System.out.println("Hunger: " + d.array.get(selection).hunger);
+                System.out.println("Hunger: " + d.array.get(selection).hunger); //prints out all the options for interacting with the pet
                 System.out.println("Thirst: " + d.array.get(selection).thirst);
                 System.out.println("Boredom: " + d.array.get(selection).boredom);
                 System.out.println("Tiredness: " + d.array.get(selection).tiredness);
@@ -94,26 +94,26 @@ class Main extends Thread {
                 int answer = input.nextInt();
 
 
-                if (answer == 1) {
-                    d.array.get(selection).feed(selection);
+                if (answer == 1) {  //compares user input to selectable options
+                    d.array.get(selection).feed(selection); //runs feed method to feed the pet
                     System.out.println("You feed " + d.array.get(selection).name + "!");
                     System.out.println("");
                 }
 
                 else if (answer == 2) {
-                    d.array.get(selection).drink(selection);
+                    d.array.get(selection).drink(selection); //runs drink method to make hydration better
                     System.out.println("You give " +  d.array.get(selection).name + " water!");
                     System.out.println("");
                 } else if (answer == 3) {
-                    d.array.get(selection).play(selection);
+                    d.array.get(selection).play(selection); //runs play method to increase boredom level
                     System.out.println("You play with " + d.array.get(selection).name + "!");
                 } else if (answer == 4) {
-                    d.array.get(selection).sleep(selection);
+                    d.array.get(selection).sleep(selection); //runs sleep method to increase sleep level
                     System.out.println("You let " +  d.array.get(selection).name + "sleep!");
                 }
 
                 else if (answer == 6) {
-                    break;
+                    break; //breaks out of while loop and goes back to the pet selection screen
                 }
 
 
@@ -131,24 +131,24 @@ class Main extends Thread {
 
     public void run() {
 
-        boolean finished = false;
+        boolean finished = false; //used to start while loop
 
         while (!finished) {
 
             VirtualPetApplication p = VirtualPetApplication.getInstance();
             for (int i = 0; i < p.array.size(); i++) {
-                p.array.get(i).incrementAttributes(i);
+                p.array.get(i).incrementAttributes(i); //runs increments
 
-                if (p.array.get(i).hunger <= 0 || p.array.get(i).thirst <= 0 || p.array.get(i).boredom <= 0 || p.array.get(i).tiredness <= 0 ) {
+                if (p.array.get(i).hunger <= 0 || p.array.get(i).thirst <= 0 || p.array.get(i).boredom <= 0 || p.array.get(i).tiredness <= 0 ) { //checks if any of the attributes are lower
 
                     System.out.println("One of your pets has died: GAME OVER!");
-                    Runtime.getRuntime().exit(0);
+                    Runtime.getRuntime().exit(0); //exits program
                 }
 
             }
             try {
 
-                Thread.sleep(4000);
+                Thread.sleep(4000); //increments increase by 4 seconds each time the while loop is ran
 
             } catch (InterruptedException e) {
                 e.printStackTrace();

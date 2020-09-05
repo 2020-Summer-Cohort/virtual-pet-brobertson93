@@ -11,9 +11,9 @@ public class VirtualPet {
         Runtime.getRuntime().exit(0);
     }
     public void feed (int number){
-        VirtualPetApplication p = VirtualPetApplication.getInstance();
-        p.array.get(number).hunger = p.array.get(number).hunger + 20;
-        p.array.get(number).thirst = p.array.get(number).thirst - 5;
+        VirtualPetApplication p = VirtualPetApplication.getInstance(); //brings in singleton array
+        p.array.get(number).hunger = p.array.get(number).hunger + 20;//updates hunger
+        p.array.get(number).thirst = p.array.get(number).thirst - 5; //updates thirst
 
     }
 
@@ -50,13 +50,13 @@ public class VirtualPet {
         p.array.get(selection).hunger = p.array.get(selection).hunger - 2;
         if(p.array.get(selection).hunger < 0) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " died from hunger!***");
+            System.out.println("***" + p.array.get(selection).name + " died from hunger!***"); //lets you know which pet died from a particular attribute hitting < 0
             System.out.println("");
         }
 
         else if(p.array.get(selection).hunger < 40) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " is dying from hunger!***");
+            System.out.println("***" + p.array.get(selection).name + " is dying from hunger!***"); // warns that a pet is getting closed to dying
             System.out.println("");
         }
 
