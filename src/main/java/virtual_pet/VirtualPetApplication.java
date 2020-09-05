@@ -1,145 +1,162 @@
 package virtual_pet;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 
 
-public class VirtualPetApplication extends Thread {
-    public static void main(String[] args) throws InterruptedException {
+import java.util.Scanner;
+
+// Java program implementing Singleton class
+// with getInstance() method
+class VirtualPetApplication
+{
+    // static variable single_instance of type Singleton
+    private static VirtualPetApplication single_instance = null;
+
+    // variable of type String
+    public ArrayList<VirtualPet> array = new ArrayList<VirtualPet>();
+
+    // private constructor restricted to this class itself
+    private VirtualPetApplication()
+    {
+        array = new ArrayList<VirtualPet>();
+
+    }
+
+    // static method to create instance of Singleton class
+    public static VirtualPetApplication getInstance()
+    {
+        if (single_instance == null)
+            single_instance = new VirtualPetApplication();
+
+        return single_instance;
+    }
+}
+
+// Driver Class
+class Main extends Thread {
+    public static void main(String args[]) {
+        Main thread = new Main();
         Scanner input = new Scanner(System.in);
-        VirtualPetApplication thread = new VirtualPetApplication();
         System.out.println("How many pets do you have?");
+
         int pets = input.nextInt();
 
         input.nextLine(); //clears input buffer
-        VirtualPet [] ct = new VirtualPet[pets];
 
+        VirtualPetApplication d = VirtualPetApplication.getInstance();
 
-        for (int i = 0 ; i < pets ; i++) {
-            ct[i] = new VirtualPet();
+        for (int i = 0; i < pets; i++) {
 
+            VirtualPet test = new VirtualPet();
             System.out.println("Please enter pet name!");
-            ct[i].name = input.nextLine();
+            test.name = input.nextLine();
+            d.array.add(test);
+
+
         }
 
 
 
         thread.start();
         boolean end = false;
+        while(!end){
+
+            System.out.println("Please select a pet!");
+            for (int i = 0; i < d.array.size(); i++) {
+
+                System.out.println((i + 1 ) + ": " + d.array.get(i).name);
 
 
-        while (!end) {
-
-
-
-            //System.out.println("Hunger: " + ct.hunger);
-           // System.out.println("Thirst: " + ct.thirst);
-            //System.out.println("Boredom: " + ct.boredom);
-            //System.out.println("Tiredness: " + ct.tiredness);
-
-            System.out.println("Please select a pet to interact with:");
-
-            for (int i = 0; i < pets; i++) {
-                System.out.println("Press " + (i + 1) + " to interact with: " + ct[i].name);
             }
 
-
             int selection = input.nextInt() - 1;
-            while((selection) != 6) {
+            System.out.println("");
+            while(!end) {
 
-
-                System.out.println("Hunger: " + ct[selection].getHunger());
-                System.out.println("Thirst: " + ct[selection].getThirst());
-                System.out.println("Boredom: " + ct[selection].getBoredom());
-                System.out.println("Tiredness: " + ct[selection].getTiredness());
-
-                System.out.println("1: Feed " + ct[selection].name);
-                System.out.println("2: Give " + ct[selection].name + " water");
-                System.out.println("3: Play with " + ct[selection].name);
-                System.out.println("4: Put " + ct[selection].name + " in bed");
+                System.out.println("Hunger: " + d.array.get(selection).hunger);
+                System.out.println("Thirst: " + d.array.get(selection).thirst);
+                System.out.println("Boredom: " + d.array.get(selection).boredom);
+                System.out.println("Tiredness: " + d.array.get(selection).tiredness);
+                System.out.println("");
+                System.out.println("1: Feed " + d.array.get(selection).name);
+                System.out.println("2: Give " + d.array.get(selection).name + " water");
+                System.out.println("3: Play with " + d.array.get(selection).name);
+                System.out.println("4: Put " + d.array.get(selection).name + " in bed");
                 System.out.println("5: Do nothing.");
+                System.out.println("");
                 System.out.println("6: Change Pet.");
+                System.out.println("");
+                System.out.println("");
                 System.out.println("9: Quit the program");
 
                 int answer = input.nextInt();
 
 
                 if (answer == 1) {
-                    ct[selection].feed();
-                    System.out.println("You feed " + ct[selection].name + "!");
+                    d.array.get(selection).feed(selection);
+                    System.out.println("You feed " + d.array.get(selection).name + "!");
                     System.out.println("");
+                }
 
-                } else if (answer == 2) {
-                       ct[selection].drink();
-                    System.out.println("You give " +  ct[selection].name+ " water!");
+                else if (answer == 2) {
+                    d.array.get(selection).drink(selection);
+                    System.out.println("You give " +  d.array.get(selection).name + " water!");
                     System.out.println("");
                 } else if (answer == 3) {
-                     ct[selection].play();
-                    System.out.println("You play with " + ct[selection].name + "!");
+                    d.array.get(selection).play(selection);
+                    System.out.println("You play with " + d.array.get(selection).name + "!");
                 } else if (answer == 4) {
-                    //   ct.sleep();
-                    System.out.println("You let Andy sleep!");
+                    d.array.get(selection).sleep(selection);
+                    System.out.println("You let " +  d.array.get(selection).name + "sleep!");
                 }
 
                 else if (answer == 6) {
                     break;
                 }
 
+
+
             }
-            //else if (answer == 9) {
-                //VirtualPet.shutdownButton = 9;
-             //   System.out.println("Thank you for playing!");
-             //  end = true;
-            //}
+
+
+
 
 
         }
 
-
-
     }
-    public void run() {
-        VirtualPet thread = new VirtualPet();
-        boolean finished = false;
-        int i = 0;
-        while (!finished){
 
-           // if (thread.shutdown()) {
-               // finished = true;
-           // }
+
+    public void run() {
+
+        boolean finished = false;
+
+        while (!finished) {
+
+            VirtualPetApplication p = VirtualPetApplication.getInstance();
+            for (int i = 0; i < p.array.size(); i++) {
+                p.array.get(i).incrementAttributes(i);
+
+                if (p.array.get(i).hunger <= 0 || p.array.get(i).thirst <= 0 || p.array.get(i).boredom <= 0 || p.array.get(i).tiredness <= 0 ) {
+
+                    System.out.println("One of your pets has died: GAME OVER!");
+                    Runtime.getRuntime().exit(0);
+                }
+
+            }
             try {
-                Thread.sleep(3000);
+
+                Thread.sleep(4000);
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            ticker.ticker++;
-           // System.out.println(ticker.ticker);
-           // System.out.println(VirtualPet.ticker);
-
-
-
-            //int random = (int) (1 + (Math.random() * 5));
-
-
-
-
-
-
-
-
         }
+
+
     }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-

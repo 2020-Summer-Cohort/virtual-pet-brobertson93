@@ -1,109 +1,107 @@
 package virtual_pet;
-class ticker {
-    public static int ticker = 0;
-}
 
 public class VirtualPet {
+    String name;
+    int hunger = 100;
+    int thirst = 100;
+    int boredom = 100;
+    int tiredness = 100;
 
+    public static void exit() {
+        Runtime.getRuntime().exit(0);
+    }
+    public void feed (int number){
+        VirtualPetApplication p = VirtualPetApplication.getInstance();
+        p.array.get(number).hunger = p.array.get(number).hunger + 20;
+        p.array.get(number).thirst = p.array.get(number).thirst - 5;
 
-    public int hunger = 100;
-    public int hungerHold = 0;
-    public int thirst = 100;
-    public int thirstHold = 0;
-    public int boredom = 100;
-    public int boredomHold = 0;
-    public int tiredness = 100;
-    public int tirednessHold = 0;
-    public String name;
-    public static int shutdownButton = 9;
-    int petTotal = 0;
-
-public void hungerCalc(int number){
-    hungerHold = hungerHold + ticker.ticker;
-    hunger = hunger + number - hungerHold;
-    hungerHold = -(ticker.ticker);
-
-
-}
-
-public void thirstCalc(int number){
-    thirstHold = thirstHold + ticker.ticker;
-    thirst = thirst + number - thirstHold;
-    thirstHold = -(ticker.ticker);
-
-}
-
-public void boredomCalc(int number){
-    boredomHold = boredomHold + ticker.ticker;
-    boredom = boredom + number + boredomHold;
-    boredomHold = -(ticker.ticker);
-}
-
-public void tirednessCalc(int number){
-    tirednessHold = tirednessHold + ticker.ticker;
-    tiredness = tiredness + number + tirednessHold;
-    tirednessHold = -(ticker.ticker);
-}
-
-    public int getHunger() {
-        hungerCalc(0);
-        return  hunger;
     }
 
-    public int getThirst(){
-          thirstCalc(0);
-        return thirst;
+    public void drink (int number) {
+        VirtualPetApplication p = VirtualPetApplication.getInstance();
+        p.array.get(number).thirst = p.array.get(number).thirst + 20;
+        p.array.get(number).hunger = p.array.get(number).hunger - 5;
+
     }
 
-    public int getBoredom(){
-        boredomCalc(0);
-        return boredom;
+    public void play (int number) {
+        VirtualPetApplication p = VirtualPetApplication.getInstance();
+        p.array.get(number).boredom = p.array.get(number).boredom + 20;
+        p.array.get(number).hunger = p.array.get(number).hunger - 5;
+        p.array.get(number).thirst = p.array.get(number).thirst - 8;
+        p.array.get(number).tiredness = p.array.get(number).tiredness - 15;
+
+
     }
 
-    public int getTiredness() {
-        tirednessCalc(0);
-        return tiredness;
+    public void sleep (int number) {
+        VirtualPetApplication p = VirtualPetApplication.getInstance();
+
+
+        p.array.get(number).hunger = p.array.get(number).hunger - 25;
+        p.array.get(number).thirst = p.array.get(number).thirst - 18;
+        p.array.get(number).tiredness = p.array.get(number).tiredness + 45;
+
     }
 
-    public void feed() {
-        hungerCalc(10);
-        thirstCalc(-5);
-    }
+    public void incrementAttributes(int selection) {
+        VirtualPetApplication p = VirtualPetApplication.getInstance();
 
+        p.array.get(selection).hunger = p.array.get(selection).hunger - 2;
+        if(p.array.get(selection).hunger < 0) {
+            System.out.println("");
+            System.out.println("***" + p.array.get(selection).name + " died from hunger!***");
+            System.out.println("");
+        }
 
+        else if(p.array.get(selection).hunger < 40) {
+            System.out.println("");
+            System.out.println("***" + p.array.get(selection).name + " is dying from hunger!***");
+            System.out.println("");
+        }
 
-    public void drink() {
-        hungerCalc(-5);
-        thirstCalc(15);
-    }
+        p.array.get(selection).thirst = p.array.get(selection).thirst - 3;
 
-    public void play() {
-        hungerCalc(-5);
-        thirstCalc(-10);
-        boredomCalc(30);
-        tirednessCalc(-20);
-    }
+        if(p.array.get(selection).thirst < 0) {
+            System.out.println("");
+            System.out.println("***" + p.array.get(selection).name + " died from thirst!***");
+            System.out.println("");
+        }
 
-    public void sleep() {
-        hungerCalc(-10);
-        thirstCalc(-10);
-        tirednessCalc(30);
-    }
+        else if(p.array.get(selection).thirst < 40) {
+            System.out.println("");
+            System.out.println("***" + p.array.get(selection).name + " is dying from thirst!***");
+            System.out.println("");
+        }
 
-    public void random() {
-        int random = (int) (1 + (Math.random() * 5));
+        p.array.get(selection).boredom = p.array.get(selection).boredom - 1;
 
-        if (random == 2) {
-            System.out.println("Your pet decided to eat!");
-            feed();
+        if(p.array.get(selection).boredom < 0) {
+            System.out.println("");
+            System.out.println("***" + p.array.get(selection).name + " died from boredom!***");
+            System.out.println("");
+        }
+
+        else if(p.array.get(selection).boredom < 40) {
+            System.out.println("");
+            System.out.println("***" + p.array.get(selection).name + " is dying from boredom!***");
+            System.out.println("");
+        }
+
+        p.array.get(selection).tiredness = p.array.get(selection).tiredness - 2;
+
+        if(p.array.get(selection).tiredness < 0) {
+            System.out.println("");
+            System.out.println("***" + p.array.get(selection).name + " died from exhaustion!***");
+            System.out.println("");
+        }
+
+        else if(p.array.get(selection).tiredness < 40) {
+            System.out.println("");
+            System.out.println("***" + p.array.get(selection).name + " is dying from exhaustion!***");
+            System.out.println("");
         }
 
     }
-
-    public boolean shutdown() {
-        return shutdownButton == 9;
-    }
 }
-
-
 
