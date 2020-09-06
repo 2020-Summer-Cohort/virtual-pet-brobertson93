@@ -8,18 +8,18 @@ public class VirtualPet {
     int tiredness = 100;
 
 
-    public void printAttributes(int number){
-        VirtualPetApplication d = VirtualPetApplication.getInstance();
-        System.out.println("Hunger: " + d.array.get(number).hunger);//prints out all the options for interacting with the pet
-        System.out.println("Thirst: " + d.array.get(number).thirst);
-        System.out.println("Boredom: " + d.array.get(number).boredom);
-        System.out.println("Tiredness: " + d.array.get(number).tiredness);
+    public void printAttributes(){
+       
+        System.out.println("Hunger: " + hunger);//prints out all the options for interacting with the pet
+        System.out.println("Thirst: " + thirst);
+        System.out.println("Boredom: " + boredom);
+        System.out.println("Tiredness: " + tiredness);
 
         System.out.println("");
-        System.out.println("1: Feed " + d.array.get(number).name);
-        System.out.println("2: Give " + d.array.get(number).name + " water");
-        System.out.println("3: Play with " + d.array.get(number).name);
-        System.out.println("4: Put " + d.array.get(number).name + " in bed");
+        System.out.println("1: Feed " + name);
+        System.out.println("2: Give " + name + " water");
+        System.out.println("3: Play with " + name);
+        System.out.println("4: Put " + name + " in bed");
         System.out.println("5: Do nothing.");
         System.out.println("");
         System.out.println("6: Change Pet.");
@@ -28,120 +28,126 @@ public class VirtualPet {
         System.out.println("9: Quit the program");
     }
 
-    public int getHunger(int number){
-        VirtualPetApplication p = VirtualPetApplication.getInstance();
-        return p.array.get(number).hunger;
+    public int getHunger(){
+        
+        return hunger;
     }
 
-    public int getThirst(int number){
-        VirtualPetApplication p = VirtualPetApplication.getInstance();
-        return p.array.get(number).thirst;
+    public int getThirst(){
+       
+        return thirst;
     }
 
-    public void feed (int number){
-        VirtualPetApplication p = VirtualPetApplication.getInstance(); //brings in singleton array
-        p.array.get(number).hunger = p.array.get(number).hunger + 20;//updates hunger
-        p.array.get(number).thirst = p.array.get(number).thirst - 5; //updates thirst
-        System.out.println("You feed " + p.array.get(number).name + "!");
+    public void feed (){
+       //brings in singleton array
+       hunger = hunger + 20;//updates hunger
+       thirst = thirst - 5; //updates thirst
+       
+       System.out.println("You feed " + name + "!");
+       System.out.println("");
+
+    }
+
+    public void drink () {
+     thirst = thirst + 20;
+        hunger = hunger - 5;
+        System.out.println("You give " + name + " water!");
         System.out.println("");
 
     }
 
-    public void drink (int number) {
-        VirtualPetApplication p = VirtualPetApplication.getInstance();
-        p.array.get(number).thirst = p.array.get(number).thirst + 20;
-        p.array.get(number).hunger = p.array.get(number).hunger - 5;
-        System.out.println("You give " + p.array.get(number).name + " water!");
-        System.out.println("");
+    public void play () {
+        boredom = boredom + 20;
+        hunger = hunger - 5;
+        thirst = thirst - 8;
+        tiredness = tiredness - 15;
 
-    }
-
-    public void play (int number) {
-        VirtualPetApplication p = VirtualPetApplication.getInstance();
-        p.array.get(number).boredom = p.array.get(number).boredom + 20;
-        p.array.get(number).hunger = p.array.get(number).hunger - 5;
-        p.array.get(number).thirst = p.array.get(number).thirst - 8;
-        p.array.get(number).tiredness = p.array.get(number).tiredness - 15;
-
-        System.out.println("You play with " + p.array.get(number).name + "!");
+        System.out.println("You play with " + name + "!");
         System.out.println("");
 
 
     }
 
-    public void sleep (int number) {
-        VirtualPetApplication p = VirtualPetApplication.getInstance();
+    public void sleep () {
 
 
-        p.array.get(number).hunger = p.array.get(number).hunger - 25;
-        p.array.get(number).thirst = p.array.get(number).thirst - 18;
-        p.array.get(number).tiredness = p.array.get(number).tiredness + 45;
+        hunger = hunger - 25;
+        thirst = thirst - 18;
+        tiredness = tiredness + 45;
 
-        System.out.println("You let " + p.array.get(number).name + " sleep!");
+        System.out.println("You let " + name + " sleep!");
         System.out.println("");
 
     }
 
-    public void incrementAttributes(int selection) {
-        VirtualPetApplication p = VirtualPetApplication.getInstance();
+    public void incrementAttributes() {
 
-        p.array.get(selection).hunger = p.array.get(selection).hunger - 2;
-        if(p.array.get(selection).hunger < 0) {
+        hunger = hunger - 2;
+        if(hunger < 0) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " died from hunger!***"+'\n' + "GAME OVER!"); //lets you know which pet died from a particular attribute hitting < 0
+            System.out.println("***" + name + " died from hunger!***"+'\n' + "GAME OVER!"); //lets you know which pet died from a particular attribute hitting < 0
             Runtime.getRuntime().exit(0); //exits program
         }
 
-        else if(p.array.get(selection).hunger < 40) {
+        else if(hunger < 40) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " is dying from hunger!***"); // warns that a pet is getting closed to dying
+            System.out.println("***" + name + " is dying from hunger!***"); // warns that a pet is getting closed to dying
             System.out.println("");
         }
 
-        p.array.get(selection).thirst = p.array.get(selection).thirst - 3;
+        thirst = thirst - 3;
 
-        if(p.array.get(selection).thirst < 0) {
+        if(thirst < 0) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " died from thirst!***" +'\n' + "GAME OVER!");
+            System.out.println("***" + name + " died from thirst!***" +'\n' + "GAME OVER!");
             Runtime.getRuntime().exit(0); //exits program
 
 
         }
 
-        else if(p.array.get(selection).thirst < 40) {
+        else if(thirst < 40) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " is dying from thirst!***");
+            System.out.println("***" + name + " is dying from thirst!***");
             System.out.println("");
         }
 
-        p.array.get(selection).boredom = p.array.get(selection).boredom - 1;
+        boredom = boredom - 1;
 
-        if(p.array.get(selection).boredom < 0) {
+        if(boredom < 0) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " died from boredom!***"+'\n' + "GAME OVER!");
+            System.out.println("***" + name + " died from boredom!***"+'\n' + "GAME OVER!");
             Runtime.getRuntime().exit(0); //exits program
         }
 
-        else if(p.array.get(selection).boredom < 40) {
+        else if(boredom < 40) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " is dying from boredom!***");
+            System.out.println("***" + name + " is dying from boredom!***");
             System.out.println("");
         }
 
-        p.array.get(selection).tiredness = p.array.get(selection).tiredness - 2;
+        tiredness = tiredness - 2;
 
-        if(p.array.get(selection).tiredness < 0) {
+        if(tiredness < 0) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " died from exhaustion!***"+'\n' + "GAME OVER!");
+            System.out.println("***" + name + " died from exhaustion!***"+'\n' + "GAME OVER!");
             Runtime.getRuntime().exit(0); //exits program
         }
 
-        else if(p.array.get(selection).tiredness < 40) {
+        else if(tiredness < 40) {
             System.out.println("");
-            System.out.println("***" + p.array.get(selection).name + " is dying from exhaustion!***");
+            System.out.println("***" + name + " is dying from exhaustion!***");
             System.out.println("");
         }
 
+ 
     }
+    
+    public void randomizer() {
+    	int random = (int) (Math.random() * 99) + 1;
+    	if (random % 10 == 0) {
+    		
+    	}
+    }
+ 
 }
 
