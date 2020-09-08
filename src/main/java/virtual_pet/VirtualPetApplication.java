@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 class VirtualPetApplication {
 
-	public void start() {
+	public void start() { //creates pets and starts incrementing time/input
 		Scanner input = new Scanner(System.in);
 		createPets(input);
 		
